@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Validation\Rules;
 
-class AuthController extends Controller
+class AuthController
 {
    /**
     *  Views

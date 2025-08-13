@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
-class MainController extends Controller
+/**
+ * MacroController which will be decomposed once domain boundaries are understood
+ */
+class MainController
 {
     /**
      * Views
      */
     public function showDashboard()
     {
-        return view();
+        return view('dashboard');
     }
 
     /**
