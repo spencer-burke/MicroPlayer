@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
+use App\Models\Profile;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -31,6 +32,14 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('Password1'),
             'remember_token' => Str::random(10),
         ];
+    }
+
+    /**
+     * Add the ability to add profiles to a user
+     */
+    public function withProfiles(int $count = 1): static
+    {
+        return $this->has(Profile::factory()->count($count), 'profiles');
     }
 
     /**
