@@ -11,10 +11,11 @@ class MainController
      */
     public function showDashboard()
     {
-        return view('dashboard');
+        return view('account-dashboard');
     }
 
     /**
      * Handlers
      */
+
 }

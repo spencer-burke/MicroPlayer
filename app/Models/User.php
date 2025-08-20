@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the profiles for the user
+     */
+    public function profiles(): HasMany
+    {
+        return $this->hasMany(Profile::class);
+    }
 }
