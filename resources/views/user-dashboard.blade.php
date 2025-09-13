@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    <title>The Account Dashboard</title>
+    <title>The User Dashboard</title>
 </head>
 
 <body>
-    <h1>The Account Dashboard</h1>
+    <h1>The User Dashboard</h1>
     <h2> Welcome, {{ $user->name }} </h2>
     @foreach($user->profiles as $profile)
     @csrf
