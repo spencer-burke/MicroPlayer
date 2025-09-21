@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 /*
  * What this controller needs:
  * index
@@ -15,7 +17,7 @@ class UserController
      */
     public function index()
     {
-         // Grab the account and profile information to place into the emplate
+        // Grab the account and profile information to place into the emplate
         $user = Auth::user()->load('profiles');
 
         return view('user-dashboard', [
