@@ -5,16 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-/*
- * What this controller needs:
- * index
- * destory(eventually)
- */
-/*
- * This is going away for the most part
- * It doesn't make sense for this to be a resource controller
- */
-class UserController
+class ProfileController
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +15,7 @@ class UserController
         // Grab the account and profile information to place into the emplate
         $user = Auth::user()->load('profiles');
 
-        return view('user-dashboard', [
+        return view('profile-dashboard', [
             'user' => $user,
         ]);
     }

@@ -38,7 +38,7 @@ class AuthController
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             //return redirect()->intended('user-dashboard');
-            return redirect()->action([UserController::class, 'index']);
+            return redirect()->action([ProfileController::class, 'index']);
         }
 
         return back()->withErrors([
@@ -61,6 +61,6 @@ class AuthController
 
         Auth::login($user);
         //return redirect()->intended('user-dashboard');
-        return redirect()->action([UserController::class, 'index']);
+        return redirect()->action([ProfileController::class, 'index']);
     }
 }
