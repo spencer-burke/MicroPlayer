@@ -11,6 +11,7 @@
     @foreach($user->profiles as $profile)
     @csrf
         <p>{{ $profile->displayname }}</p>
+        <a href="{{ route('profiles.show', $profile->id) }}">View Profile</a>
     @endforeach
 </body>
 

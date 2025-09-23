@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /*
- * What this controller needs:
- * index
- * destory(eventually)
- */
-/*
  * This is going away for the most part
  * It doesn't make sense for this to be a resource controller
  */
@@ -21,6 +16,9 @@ class UserController
      */
     public function index()
     {
+        /*
+         * This code is basically dead
+         */
         // Grab the account and profile information to place into the emplate
         $user = Auth::user()->load('profiles');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Profile;
 
 class ProfileController
 {
@@ -41,7 +42,12 @@ class ProfileController
      */
     public function show(string $id)
     {
-        //
+        // Get the profile and pass it to the view
+        $profile = Profile::findOrFail($id);
+
+        return view('profile', [
+            'profile' => $profile,
+        ]);
     }
 
     /**
