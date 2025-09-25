@@ -13,7 +13,7 @@ class ProfileController
      */
     public function index()
     {
-        // Grab the account and profile information to place into the emplate
+        // Grab the account and profile information to place into the template
         $user = Auth::user()->load('profiles');
 
         return view('profile-dashboard', [
@@ -42,6 +42,8 @@ class ProfileController
      */
     public function show(string $id)
     {
+        // TODO: add the ability to check if the user has profiles
+
         // Get the profile and pass it to the view
         $profile = Profile::findOrFail($id);
 
