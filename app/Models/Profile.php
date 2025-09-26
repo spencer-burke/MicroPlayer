@@ -14,10 +14,6 @@ class Profile extends Model
         'displayname',
     ];
 
-    protected $hidden = [
-        'user_id'
-    ];
-
     /**
      * Get the attributes that should be cast.
      *

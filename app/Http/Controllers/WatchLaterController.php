@@ -2,30 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WatchLater;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-/*
- * Currently out of use
- * Was originally for user management, but that happens in auth
- * Profile Resource Controller is now responsible for dashboards
- */
-class UserController
+class WatchLaterController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        /*
-         * This code is basically dead
-         */
-        // Grab the account and profile information to place into the emplate
-        $user = Auth::user()->load('profiles');
-
-        return view('user-dashboard', [
-            'user' => $user,
-        ]);
+        //
     }
 
     /**
@@ -47,7 +34,7 @@ class UserController
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(WatchLater $watchLater)
     {
         //
     }
@@ -55,7 +42,7 @@ class UserController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(WatchLater $watchLater)
     {
         //
     }
@@ -63,7 +50,7 @@ class UserController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, WatchLater $watchLater)
     {
         //
     }
@@ -71,7 +58,7 @@ class UserController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(WatchLater $watchLater)
     {
         //
     }
