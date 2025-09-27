@@ -33,4 +33,24 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function searchHistories()
+    {
+        return $this->hasMany(SearchHistory::class);
+    }
+
+    public function watchLaters()
+    {
+        return $this->hasMany(WatchLater::class);
+    }
+
+    public function favoriteFilms()
+    {
+        return $this->hasMany(FavoriteFilm::class);
+    }
+
+    public function filmRecommendations()
+    {
+        return $this->hasMany(FilmRecommendation::class);
+    }
 }

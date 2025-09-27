@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('favorite_films', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('film_id')->constrained()->onDelete('cascade');
+            $table->foreignId('profile_id')->constrained()->onDelete('cascade');
         });
     }
 

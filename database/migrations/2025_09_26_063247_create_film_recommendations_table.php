@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('film_recommendations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('film_id')->constrained()->onDelete('cascade');
+            $table->foreignId('profile_id')->constrained()->onDelete('cascade');
         });
     }
 
