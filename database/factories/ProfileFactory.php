@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\FavoriteFilm;
 use App\Models\FilmRecommendation;
+use App\Models\WatchLater;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use App\Models\Profile;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Profile>
@@ -40,8 +40,16 @@ class ProfileFactory extends Factory
     }
 
     // withWatchLaters
+    public function withWatchLaters(int $count = 1): static
+    {
+        return $this->has(WatchLater::factory()->count($count), 'watch_laters');
+    }
 
     // withFavoriteFilms
+    public function withFavoriteFilms(int $count = 1): static
+    {
+        return $this->has(FavoriteFilm::factory()->count($count), 'favorite_films');
+    }
 
     // withSearchHistories
 }

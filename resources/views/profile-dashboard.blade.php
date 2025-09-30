@@ -10,7 +10,7 @@
     <h2> Welcome, {{ $user->name }} </h2>
     @foreach($user->profiles as $profile)
     @csrf
-        <p>{{ $profile->displayname }}</p>
+        <p>{{ $profile->display_name }}</p>
         <a href="{{ route('profiles.show', $profile->id) }}">View Profile</a>
     @endforeach
 </body>
