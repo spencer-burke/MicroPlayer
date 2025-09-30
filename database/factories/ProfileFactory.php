@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\FilmRecommendation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\User;
 use App\Models\Profile;
 
 /**
@@ -32,4 +32,16 @@ class ProfileFactory extends Factory
             'displayname' => fake()->name(),
         ];
     }
+
+    // withFilmRecommendations
+    public function withFilmRecommendations(int $count = 1): static
+    {
+        return $this->has(FilmRecommendation::factory()->count($count), 'film_recommendations');
+    }
+
+    // withWatchLaters
+
+    // withFavoriteFilms
+
+    // withSearchHistories
 }
