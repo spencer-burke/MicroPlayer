@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\FavoriteFilm;
 use App\Models\FilmRecommendation;
+use App\Models\SearchHistory;
 use App\Models\WatchLater;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -29,7 +30,7 @@ class ProfileFactory extends Factory
     {
         return [
             //
-            'displayname' => fake()->name(),
+            'display_name' => fake()->name(),
         ];
     }
 
@@ -52,4 +53,8 @@ class ProfileFactory extends Factory
     }
 
     // withSearchHistories
+    public function withSearchHistories(int $count = 1): static
+    {
+        return $this->has(SearchHistory::factory()->count($count), 'search_history');
+    }
 }

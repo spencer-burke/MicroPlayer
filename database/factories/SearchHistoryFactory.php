@@ -17,7 +17,7 @@ class SearchHistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'search_query' => fake()->words(2, true),
         ];
     }
 }
