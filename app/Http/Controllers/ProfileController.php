@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WatchLater;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profile;
+use App\Models\FavoriteFilm;
+use App\Models\FilmRecommendation;
 
 class ProfileController
 {
@@ -47,8 +50,34 @@ class ProfileController
         // Get the profile and pass it to the view
         $profile = Profile::findOrFail($id);
 
+        //$recommendations = $profile->recommendations;
+        $recommendations = FilmRecommendation::query()
+            ->join('films', 'recommendations.film_id', '=', 'films.id')
+            ->where('recommendations.film_id', '=', $profile->id)
+            ->get();
+
+        //$favorites = $profile->favorites;
+        $favorites = FavoriteFilm::query()
+            ->join('films', 'favorites.film_id', '=', 'films.id')
+            ->where('favorites.profile_id', $profile->id)
+            ->select('favorites.*', 'films.name as film_name')
+            ->get();
+
+        //$watchLaters = $profile->watchLaters;
+        $watchLaters = WatchLater::query()
+            ->join('films', 'watch_laters.film_id', '=', 'films.id')
+            ->where('watch_laters.profile_id', $profile->id)
+            ->select('watch_laters.*', 'films.name as film_name')
+            ->get();
+
+        $searchHistories = $profile->searchHistories;
+
         return view('profile', [
             'profile' => $profile,
+            'recommendations' => $recommendations,
+            'favorites' => $favorites,
+            'watchLaters' => $watchLaters,
+            'searchHistories' => $searchHistories,
         ]);
     }
 
