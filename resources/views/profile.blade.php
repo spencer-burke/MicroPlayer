@@ -10,7 +10,8 @@
     <h2>Welcome, {{ $profile->display_name }}</h2>
     <h3>Film Recommendations:</h3>
     @foreach ($recommendations as $recommendation)
-        <p>{{$recommendation->}}</p>
+        <p>{{$recommendation->film_id}}</p>
+        <p>{{$recommendation->film_title}}</p>
     @endforeach
     <h3>Film Favorites:</h3>
     <h3>Film Watch Laters</h3>

@@ -52,22 +52,23 @@ class ProfileController
 
         //$recommendations = $profile->recommendations;
         $recommendations = FilmRecommendation::query()
-            ->join('films', 'recommendations.film_id', '=', 'films.id')
-            ->where('recommendations.film_id', '=', $profile->id)
+            ->join('films', 'film_recommendations.film_id', '=', 'films.id')
+            ->where('film_recommendations.film_id', '=', $profile->id)
+            ->select('film_recommendations.*', 'films.title as film_title')
             ->get();
 
         //$favorites = $profile->favorites;
         $favorites = FavoriteFilm::query()
-            ->join('films', 'favorites.film_id', '=', 'films.id')
-            ->where('favorites.profile_id', $profile->id)
-            ->select('favorites.*', 'films.name as film_name')
+            ->join('films', 'favorite_films.film_id', '=', 'films.id')
+            ->where('favorite_films.profile_id', $profile->id)
+            ->select('favorite_films.*', 'films.title as film_title')
             ->get();
 
         //$watchLaters = $profile->watchLaters;
         $watchLaters = WatchLater::query()
             ->join('films', 'watch_laters.film_id', '=', 'films.id')
             ->where('watch_laters.profile_id', $profile->id)
-            ->select('watch_laters.*', 'films.name as film_name')
+            ->select('watch_laters.*', 'films.title as film_title')
             ->get();
 
         $searchHistories = $profile->searchHistories;
