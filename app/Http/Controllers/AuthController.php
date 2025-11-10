@@ -63,4 +63,14 @@ class AuthController
         //return redirect()->intended('user-dashboard');
         return redirect()->action([ProfileController::class, 'index']);
     }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }
