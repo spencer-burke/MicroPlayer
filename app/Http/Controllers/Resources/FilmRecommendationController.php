@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Resources;
 
 use App\Models\FilmRecommendation;
 use Illuminate\Http\Request;
