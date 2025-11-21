@@ -37,8 +37,8 @@ class AuthController
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            //return redirect()->intended('user-dashboard');
-            return redirect()->action([Resources\ProfileController::class, 'index']);
+
+            return redirect()->intended(route('dashboard.user'));
         }
 
         return back()->withErrors([
@@ -60,8 +60,8 @@ class AuthController
         ]);
 
         Auth::login($user);
-        //return redirect()->intended('user-dashboard');
-        return redirect()->action([Resources\ProfileController::class, 'index']);
+
+        return redirect()->intended(route('dashboard.user'));
     }
 
     public function logout(Request $request): RedirectResponse

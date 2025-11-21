@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 /*
  * Currently out of use
  * Was originally for user management, but that happens in auth
- * Profile Resource Controller is now responsible for dashboards
  */
 class UserController
 {
@@ -17,15 +16,6 @@ class UserController
      */
     public function index()
     {
-        /*
-         * This code is basically dead
-         */
-        // Grab the account and profile information to place into the emplate
-        $user = Auth::user()->load('profiles');
-
-        return view('user-dashboard', [
-            'user' => $user,
-        ]);
     }
 
     /**
