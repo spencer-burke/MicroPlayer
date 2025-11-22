@@ -36,6 +36,7 @@
             </div>
         </div>
     </form>
+    <a href="{{ route('register') }}">Go to register</a>
 
 </body>
 

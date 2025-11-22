@@ -8,10 +8,11 @@ use App\Http\Controllers\Resources\ProfileController;
 use App\Http\Controllers\UI\UserDashboard;
 use App\Http\Controllers\UI\ProfileDashboard;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::redirect('/', '/login');
 Route::get('/login', [AuthController::class,'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');

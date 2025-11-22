@@ -46,6 +46,7 @@
             </div>
         </div>
     </form>
+    <a href="{{ route('login') }}">Go to login</a>
 
 </body>
 
