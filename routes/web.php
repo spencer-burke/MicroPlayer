@@ -20,3 +20,4 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 Route::get('/dashboard', UserDashboard::class)->name('dashboard.user');
 Route::get('/dashboard/profile/{profile}', ProfileDashboard::class)->name('dashboard.profile');
+Route::resource('profiles', ProfileController::class);

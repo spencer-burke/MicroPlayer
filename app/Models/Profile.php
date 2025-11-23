@@ -11,7 +11,7 @@ class Profile extends Model
 
     //
     protected $fillable = [
-        'displayname',
+        'display_name',
     ];
 
     /**
@@ -22,7 +22,7 @@ class Profile extends Model
     protected function casts(): Array
     {
         return [
-            'displayname' => 'string',
+            'display_name' => 'string',
         ];
     }
 
