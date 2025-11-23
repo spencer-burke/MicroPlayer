@@ -22,10 +22,10 @@
                     <a href="{{ route('dashboard.profile', $profile->id) }}">View Profile</a>
 
                     {{-- remove profile form --}}
-                    <form class="delete-profile-btn" action="/profiles/{{ $profile->id }}" method="POST">
+                    <form action="/profiles/{{ $profile->id }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">Delete</button>
+                        <button type="submit" class="delete-profile-btn" data-profile-id="{{ $profile->id }}">Delete</button>
                     </form>
                 </div>
             @endforeach
@@ -68,7 +68,8 @@
                 return;
             }
             
-            const profileId = e.target.dataset.profileId;
+            // use explicit naming to get button
+            const profileId = e.target.getAttribute('data-profile-id');
 
             try {
                 const response = await fetch(`/profiles/${profileId}`, {
