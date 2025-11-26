@@ -13,20 +13,14 @@
         <button type="submit">Logout</button>
     </form>
 
-    <div class="profile-cards-container">
+    <div id="profile-cards-container">
         @fragment('profile-cards')
             @foreach ($user->profiles as $profile)
                 <div class="profile-card">
                     @csrf
                     <p>{{ $profile->display_name }}</p>
                     <a href="{{ route('dashboard.profile', $profile->id) }}">View Profile</a>
-
-                    {{-- remove profile form --}}
-                    <form action="/profiles/{{ $profile->id }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="delete-profile-btn" data-profile-id="{{ $profile->id }}">Delete</button>
-                    </form>
+                    <button type="submit" class="delete-profile-btn" data-profile-id="{{ $profile->id }}">Delete</button>
                 </div>
             @endforeach
 
@@ -45,51 +39,28 @@
 
         <button type="submit">Create Profile</button>
     </form>
+
     {{-- edit profile form --}}
-    <form>
+    <h3>Edit Profile Form</h3>
+    <form action="/profiles" method="POST">
+        @csrf
+        @method('PATCH')
+        <label for="display_name">Display Name:</label>
+        <input type="text" id="display_name" name="display_name">
+
+        <label for="new_display_name">New Display Name:</label>
+        <input type="text" id="new_display_name" name="new_display_name">
+
+        <button type="submit">Edit Profile</button>
     </form>
 </body>
 
 <script>
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    // fetch handler for make profile
 
-    document.querySelectorAll('.delete-form').forEach(form => {
-        form.addEventListener('submit', function(e) {
-            if (!confirm('Are you sure you want to delete this profile?')) {
-                e.preventDefault();
-            }
-        });
-    });
+    // fetch handler for edit profile
 
-    // event delegation - attach once to container
-    document.getElementById('profile-cards-container').addEventListener('click', async function(e) {
-        if (e.target.classList.contains('delete-profile-btn')) {
-            if (!confirm('Are you sure you want to delete this profile?')) {
-                return;
-            }
-            
-            // use explicit naming to get button
-            const profileId = e.target.getAttribute('data-profile-id');
-
-            try {
-                const response = await fetch(`/profiles/${profileId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken,
-                        'Accept': 'text/html'
-                    }
-                });
-
-                // replace the profile cards with the new one from the server
-                if (response.ok) {
-                    const html = await response.text();
-                    document.getElementById('profile-cards-container').innerHTML = html;
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-    });
+    // fetch handler for delete profile
 </script>
 
 </html>

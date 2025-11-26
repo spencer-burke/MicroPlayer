@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Resources;
 
-use App\Models\WatchLater;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profile;
 use App\Models\FavoriteFilm;
 use App\Models\FilmRecommendation;
+use App\Models\WatchLater;
+
 
 class ProfileController
 {
@@ -32,6 +33,20 @@ class ProfileController
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'display_name' => 'required|string|max:255',
+        ]);
+
+        $user = Auth::user();
+
+        $user->profiles()->create([
+            'display_name' => $request->display_name,
+        ]);
+
+        // return just the fragment
+        return view('user-dashboard', [
+            'user' => $user->fresh()
+        ])->fragment('profile-cards');
     }
 
     /**
@@ -63,5 +78,13 @@ class ProfileController
     public function destroy(string $id)
     {
         //
+        $user = Auth::user();
+        $profile = $user->profiles()->findOrFail($id);
+        $profile->delete();
+
+        // Return just the fragment
+        return view('user-dashboard', [
+            'user' => $user->fresh()
+        ])->fragment('profile-cards');
     }
 }
