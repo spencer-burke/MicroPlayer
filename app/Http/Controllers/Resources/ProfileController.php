@@ -4,10 +4,6 @@ namespace App\Http\Controllers\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Profile;
-use App\Models\FavoriteFilm;
-use App\Models\FilmRecommendation;
-use App\Models\WatchLater;
 
 
 class ProfileController
@@ -15,9 +11,7 @@ class ProfileController
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-    }
+    public function index() {}
 
     /**
      * Show the form for creating a new resource.
@@ -32,13 +26,11 @@ class ProfileController
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
         $request->validate([
             'display_name' => 'required|string|max:255',
         ]);
-
-        $user = Auth::user();
-
         $user->profiles()->create([
             'display_name' => $request->display_name,
         ]);
@@ -52,9 +44,7 @@ class ProfileController
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-    }
+    public function show(string $id) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -69,7 +59,20 @@ class ProfileController
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = Auth::user();
+        $profile = $user->profiles()->findOrFail($id);
+
+        $validated = $request->validate([
+            'new_display_name' => 'required|string|max:255',
+        ]);
+
+        $profile->update([
+            'display_name' => $validated['new_display_name']
+        ]);
+
+        return view('user-dashboard', [
+            'user' => $user->fresh()
+        ])->fragment('profile-cards');
     }
 
     /**
@@ -77,7 +80,6 @@ class ProfileController
      */
     public function destroy(string $id)
     {
-        //
         $user = Auth::user();
         $profile = $user->profiles()->findOrFail($id);
         $profile->delete();

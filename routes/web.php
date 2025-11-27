@@ -2,15 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController; 
-use App\Http\Controllers\MainController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\Resources\ProfileController;
 use App\Http\Controllers\UI\UserDashboard;
 use App\Http\Controllers\UI\ProfileDashboard;
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::redirect('/', '/login');
 Route::get('/login', [AuthController::class,'showLogin'])->name('login');

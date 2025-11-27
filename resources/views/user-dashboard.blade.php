@@ -21,7 +21,8 @@
                     @csrf
                     <p>{{ $profile->display_name }}</p>
                     <a href="{{ route('dashboard.profile', $profile->id) }}">View Profile</a>
-                    <button type="submit" class="delete-profile-btn" data-profile-id="{{ $profile->id }}">Delete</button>
+                    <button type="button" class="delete-profile-btn" data-profile-id="{{ $profile->id }}">Delete</button>
+                    <button type="button" class="edit-profile-btn" data-profile-id="{{ $profile->id }}">Edit</button>
                 </div>
             @endforeach
 
@@ -41,23 +42,21 @@
         <button type="submit">Create Profile</button>
     </form>
 
-    {{-- edit profile form --}}
-    <h3>Edit Profile Form</h3>
-    <form action="/profiles" method="POST" id="edit-profile-form">
-        @csrf
-        @method('PATCH')
-        <label for="display_name">Display Name:</label>
-        <input type="text" id="display_name" name="display_name">
 
-        <label for="new_display_name">New Display Name:</label>
-        <input type="text" id="new_display_name" name="new_display_name">
-
-        <button type="submit">Edit Profile</button>
-    </form>
+    {{-- edit profile form (hidden by default) --}}
+    <div id="edit-profile-container" style="display: none;">
+        <h3>Edit Profile</h3>
+        <form id="edit-profile-form">
+            <input type="hidden" id="edit-profile-id" name="profile_id">
+            <label for="new_display_name">New Display Name:</label>
+            <input type="text" id="new_display_name" name="new_display_name" required>
+            <button type="submit">Save</button>
+            <button type="button" id="cancel-edit">Cancel</button>
+        </form>
+    </div>
 </body>
 
 <script>
-    // extract the csrf token at the top of the script
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
 
     // fetch handler for add profile
@@ -79,43 +78,59 @@
             if (response.ok) {
                 const html = await response.text();
                 document.getElementById('profile-cards-container').innerHTML = html;
-                this.reset(); // Clear the form
+                this.reset(); // clear the form
             }
         } catch (error) {
             console.error('Error:', error);
             alert('Failed to create profile');
         }
     });
-    // fetch handler for edit profile
 
-    // fetch handler for delete profile
-    document.getElementById('profile-cards-container').addEventListener('click', async function(e) {
-        if (e.target.classList.contains('delete-profile-btn')) {
-            e.preventDefault();
-
-            if (!confirm('Are you sure you want to delete this profile?')) {
-                return;
-            }
-
+    // show edit form when edit button is clicked
+    document.getElementById('profile-cards-container').addEventListener('click', function(e) {
+        if (e.target.classList.contains('edit-profile-btn')) {
             const profileId = e.target.getAttribute('data-profile-id');
+            document.getElementById('edit-profile-id').value = profileId;
+            document.getElementById('edit-profile-container').style.display = 'block';
+        }
+    });
 
-            try {
-                const response = await fetch(`/profiles/${profileId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken,
-                        'Accept': 'text/html; fragment'
-                    }
-                });
+    // cancel edit
+    document.getElementById('cancel-edit').addEventListener('click', function() {
+        document.getElementById('edit-profile-container').style.display = 'none';
+        document.getElementById('edit-profile-form').reset();
+    });
 
-                if (response.ok) {
-                    const html = await response.text();
-                    document.getElementById('profile-cards-container').innerHTML = html;
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Failed to delete profile');
+    // fetch handler for edit profile
+    document.getElementById('edit-profile-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const profileId = document.getElementById('edit-profile-id').value;
+        const newDisplayName = document.getElementById('new_display_name').value;
+
+        try {
+            const response = await fetch(`/profiles/${profileId}`, {
+                method: 'PATCH',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Accept': 'text/html; fragment',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    new_display_name: newDisplayName
+                })
+            });
+
+            if (response.ok) {
+                const html = await response.text();
+                document.getElementById('profile-cards-container').innerHTML = html;
+                document.getElementById('edit-profile-container').style.display = 'none';
+                this.reset();
+            } else {
+                alert('Failed to edit profile');
             }
+        } catch (error) {
+            alert('Failed to edit profile');
         }
     });
 </script>
