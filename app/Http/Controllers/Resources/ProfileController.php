@@ -35,7 +35,6 @@ class ProfileController
             'display_name' => $request->display_name,
         ]);
 
-        // return just the fragment
         return view('user-dashboard', [
             'user' => $user->fresh()
         ])->fragment('profile-cards');
@@ -84,7 +83,6 @@ class ProfileController
         $profile = $user->profiles()->findOrFail($id);
         $profile->delete();
 
-        // Return just the fragment
         return view('user-dashboard', [
             'user' => $user->fresh()
         ])->fragment('profile-cards');
