@@ -42,7 +42,6 @@
         <button type="submit">Create Profile</button>
     </form>
 
-
     {{-- edit profile form (hidden by default) --}}
     <div id="edit-profile-container" style="display: none;">
         <h3>Edit Profile</h3>
