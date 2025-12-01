@@ -15,7 +15,7 @@ class MuxFilmSeeder extends Seeder
     {
         foreach (config('films') as $filmData) {
             Film::updateOrCreate(
-                ['mux_playback_id' => $filmData['mux_playback_id']],
+                ['playback_id' => $filmData['playback_id']],
                 $filmData
             );
         }
