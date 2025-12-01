@@ -20,7 +20,7 @@
                 <div class="profile-card">
                     @csrf
                     <p>{{ $profile->display_name }}</p>
-                    <a href="{{ route('dashboard.profile', $profile->id) }}">View Profile</a>
+                    <a href="{{ route('dashboard.profile', $profile) }}">View Profile</a>
                     <button type="button" class="delete-profile-btn" data-profile-id="{{ $profile->id }}">Delete</button>
                     <button type="button" class="edit-profile-btn" data-profile-id="{{ $profile->id }}">Edit</button>
                 </div>

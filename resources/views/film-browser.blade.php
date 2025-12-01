@@ -9,10 +9,13 @@
 <body>
     <h1>The Film Browser</h1>
 
-    {{-- film thumbnail --}}
     {{-- link to film viewer(this will add to watch history upon page visit) --}}
     {{-- add to favorites button --}}
     {{-- add to watch later button --}}
+    @foreach($films as $film)
+        <h2>{{ $film->title }}</h2>
+        <a href="{{ route('film.viewer', $profile, $film) }}"
+    @endforeach
 </body>
 
 </html>

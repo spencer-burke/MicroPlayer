@@ -14,11 +14,8 @@ class ProfileDashboard
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, String $id)
+    public function __invoke(Request $request, Profile $profile)
     {
-        // Get the profile and pass it to the view
-        $profile = Profile::findOrFail($id);
-
         //$recommendations = $profile->recommendations;
         $recommendations = FilmRecommendation::query()
             ->join('films', 'film_recommendations.film_id', '=', 'films.id')

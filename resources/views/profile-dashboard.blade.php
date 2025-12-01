@@ -3,6 +3,7 @@
 
 <head>
     <title>Profile Dashboard</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -27,6 +28,7 @@
     @foreach ($searchHistories as $searchHistory)
         <p>{{ $searchHistory->search_query }}</p>
     @endforeach
+    <a href="{{ route('film.browser', $profile) }}">Browse Films</a>
 </body>
 
 </html>
