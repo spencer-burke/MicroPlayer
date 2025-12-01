@@ -19,14 +19,15 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // make a user with 3 profiles
-        /*
-        User::factory()
-            ->count(2)
-            ->withProfiles(3)
-            ->create();
-        */
         $films = Film::all();
+
+        if ($films->isEmpty()) {
+            $this->command->error('No films found in database. Please seed films first.');
+            $this->command->info('Run: php artisan db:seed --class=MuxFilmSeeder');
+            $this->command->info('Or: php artisan db:seed --class=FilmSeeder');
+            return;
+        }
+
         $users = User::factory(5)->withProfiles(2)->create();
 
         foreach ($users as $user) {

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FavoriteFilm extends Model
 {
     use HasFactory;
+
     public function profile()
     {
         return $this->belongsTo(Profile::class);

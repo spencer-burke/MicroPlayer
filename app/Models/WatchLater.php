@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class WatchLater extends Model
 {
     use HasFactory;
-    //
+
     protected $fillable = [
     ];
 

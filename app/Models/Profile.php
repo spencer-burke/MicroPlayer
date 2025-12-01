@@ -9,7 +9,6 @@ class Profile extends Model
 {
     use HasFactory;
 
-    //
     protected $fillable = [
         'display_name',
     ];

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class FilmRecommendation extends Model
 {
     use hasFactory;
-    //
+
     public function profile()
     {
         return $this->belongsTo(Profile::class);
