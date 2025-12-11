@@ -52,4 +52,9 @@ class Profile extends Model
     {
         return $this->hasMany(FilmRecommendation::class);
     }
+
+    public function watchHistories()
+    {
+        // return $this->hasMany()
+    }
 }
