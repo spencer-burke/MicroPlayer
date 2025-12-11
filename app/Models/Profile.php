@@ -55,6 +55,6 @@ class Profile extends Model
 
     public function watchHistories()
     {
-        // return $this->hasMany()
+        return $this->hasMany(WatchHistory::class);
     }
 }
