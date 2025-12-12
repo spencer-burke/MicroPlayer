@@ -14,7 +14,7 @@
     {{-- add to watch later button --}}
     @foreach($films as $film)
         <h2>{{ $film->title }}</h2>
-        <a href="{{ route('film.viewer', $profile, $film) }}"
+        <a href="{{ route('film.viewer', ['profile' => $profile, 'film' => $film]) }}"/>
     @endforeach
 </body>
 

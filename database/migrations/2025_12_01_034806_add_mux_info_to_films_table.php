@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('films', function (Blueprint $table) {
             $table->string('playback_id');
+            $table->string('title');
         });
     }
 
@@ -22,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('films', function (Blueprint $table) {
-            $table->dropColumn(['playback_id']);
+            $table->dropColumn(['playback_id', 'title']);
         });
     }
 };

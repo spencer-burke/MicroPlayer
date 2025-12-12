@@ -16,6 +16,7 @@ class FilmBrowser
         $films = Film::all();
 
         return view('film-browser', [
+            'profile' => $profile,
             'films' => $films,
         ]);
     }
