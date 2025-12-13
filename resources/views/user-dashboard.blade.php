@@ -132,6 +132,35 @@
             alert('Failed to edit profile');
         }
     });
+
+    // fetch handler for delete profile
+    document.getElementById('profile-cards-container').addEventListener('click', async function(e) {
+        if (e.target.classList.contains('delete-profile-btn')) {
+            e.preventDefault();
+
+            if (!confirm('Are you sure you want to delete this profile?')) {
+                return;
+            }
+
+            const profileId = e.target.getAttribute('data-profile-id');
+
+            try {
+                const response = await fetch(`/profiles/${profileId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Accept': 'text/html; fragment'
+                    }
+                });
+                if (response.ok) {
+                    const html = await response.text();
+                    document.getElementById('profile-cards-container').innerHTML = html;
+                }
+            } catch (error) {
+                alert('Failed to delete profile');
+            }
+        }
+    });
 </script>
 
 </html>

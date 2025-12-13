@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Resources;
 
-use App\Models\WatchLater;
-use App\Models\Profile;
 use Illuminate\Http\Request;
-use Illuminate\Auth;
 
-class WatchLaterController
+class WatchHistoryController
 {
     /**
      * Display a listing of the resource.
@@ -28,18 +25,15 @@ class WatchLaterController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Profile $profile)
+    public function store(Request $request)
     {
-        if ($profile->user_id !== Auth::user()->id) {
-            abort(403);
-        }
-        
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(WatchLater $watchLater)
+    public function show(string $id)
     {
         //
     }
@@ -47,7 +41,7 @@ class WatchLaterController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(WatchLater $watchLater)
+    public function edit(string $id)
     {
         //
     }
@@ -55,7 +49,7 @@ class WatchLaterController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, WatchLater $watchLater)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -63,7 +57,7 @@ class WatchLaterController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(WatchLater $watchLater)
+    public function destroy(string $id)
     {
         //
     }

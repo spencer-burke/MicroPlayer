@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Resources\FavoriteFilmController;
 use App\Http\Controllers\Resources\FilmController;
 use App\Http\Controllers\Resources\ProfileController;
+use App\Http\Controllers\Resources\WatchHistoryController;
+use App\Http\Controllers\Resources\WatchLaterController;
 use App\Http\Controllers\UI\UserDashboard;
 use App\Http\Controllers\UI\ProfileDashboard;
 use App\Http\Controllers\UI\FilmViewer;
@@ -20,4 +23,7 @@ Route::get('/dashboard/profile/{profile}', ProfileDashboard::class)->name('dashb
 Route::get('/browser/{profile}', FilmBrowser::class)->name('film.browser');
 Route::get('/viewer/{profile}/film/{film}', FilmViewer::class)->name('film.viewer');
 Route::resource('profiles', ProfileController::class);
+Route::resource('profiles.watchlaters', WatchLaterController::class);
+Route::resource('profiles.favorites', FavoriteFilmController::class);
+Route::resource('profiles.watchhistories', WatchHistoryController::class);
 Route::resource('films', FilmController::class);
