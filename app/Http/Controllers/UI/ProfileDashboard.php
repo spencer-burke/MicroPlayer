@@ -16,13 +16,6 @@ class ProfileDashboard
      */
     public function __invoke(Request $request, Profile $profile)
     {
-        //$recommendations = $profile->recommendations;
-        $recommendations = FilmRecommendation::query()
-            ->join('films', 'film_recommendations.film_id', '=', 'films.id')
-            ->where('film_recommendations.film_id', '=', $profile->id)
-            ->select('film_recommendations.*', 'films.title as film_title')
-            ->get();
-
         //$favorites = $profile->favorites;
         $favorites = FavoriteFilm::query()
             ->join('films', 'favorite_films.film_id', '=', 'films.id')
@@ -41,7 +34,6 @@ class ProfileDashboard
 
         return view('profile-dashboard', [
             'profile' => $profile,
-            'recommendations' => $recommendations,
             'favorites' => $favorites,
             'watchLaters' => $watchLaters,
             'searchHistories' => $searchHistories,

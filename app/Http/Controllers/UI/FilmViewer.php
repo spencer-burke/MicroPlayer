@@ -14,5 +14,9 @@ class FilmViewer
     public function __invoke(Request $request, Profile $profile, Film $film)
     {
         // add the film to the watch history of the profile
+        return view('film-viewer', [
+            'profile' => $profile,
+            'film' => $film
+        ]);
     }
 }

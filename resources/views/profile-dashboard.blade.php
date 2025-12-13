@@ -9,11 +9,6 @@
 <body>
     <h1>Profile Dashboard</h1>
     <h2>Welcome, {{ $profile->display_name }}</h2>
-    <h3>Film Recommendations:</h3>
-    @foreach ($recommendations as $recommendation)
-        <p>{{ $recommendation->film_id }}</p>
-        <p>{{ $recommendation->film_title }}</p>
-    @endforeach
     <h3>Film Favorites:</h3>
     @foreach ($favorites as $favorite)
         <p>{{ $favorite->film_id }}</p>
