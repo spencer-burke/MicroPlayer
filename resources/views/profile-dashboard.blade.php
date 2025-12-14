@@ -28,10 +28,6 @@
         <p>{{ $watchLater->film_title }}</p>
     @endforeach
 
-    <h3>Search History:</h3>
-    @foreach ($searchHistories as $searchHistory)
-        <p>{{ $searchHistory->search_query }}</p>
-    @endforeach
     <a href="{{ route('film.browser', $profile) }}">Browse Films</a>
 </body>
 
