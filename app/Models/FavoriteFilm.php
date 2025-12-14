@@ -9,6 +9,11 @@ class FavoriteFilm extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'profile_id',
+        'film_id'
+    ];
+
     public function profile()
     {
         return $this->belongsTo(Profile::class);

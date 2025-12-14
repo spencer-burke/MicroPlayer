@@ -6,6 +6,7 @@ use App\Models\WatchLater;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Auth;
+use Illuminate\Validation\Rule;
 
 class WatchLaterController
 {
@@ -30,10 +31,20 @@ class WatchLaterController
      */
     public function store(Request $request, Profile $profile)
     {
-        if ($profile->user_id !== Auth::user()->id) {
-            abort(403);
-        }
-        
+        $validated = $request->validate([
+            'film_id' => [
+                'required',
+                'exists:films,id',
+                Rule::unique('watch_laters')->where('profile_id', $profile->id)
+            ]
+        ]);
+
+        $watchLater = WatchLater::create([
+            'profile_id' => $profile->id,
+            'film_id' => $validated['film_id']
+        ]);
+
+        return response('', 201);
     }
 
     /**

@@ -32,6 +32,7 @@
     document.getElementById('films-container').addEventListener('click', addToFavorites);
 
     // fetch handler for add to watch later
+    document.getElementById('films-container').addEventListener('click', addToWatchLater);
 
     // function handler for add to favorites
     async function addToFavorites(e) {
@@ -39,12 +40,39 @@
             return
         }
         const filmId = e.target.getAttribute('data-film-id');
-        const response = await fetch(``)
+
+        const response = await fetch("{{ route('profiles.favorites.store', $profile) }}", {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+               film_id: filmId
+            })
+        });
     }
 
     // function handler for add to watch later
-    function addToWatchLater(e) {
+    async function addToWatchLater(e) {
+        console.log('add to watchlater');
+        if (!e.target.classList.contains('add-to-watch-later-btn')) {
+            return
+        }
+        const filmId = e.target.getAttribute('data-film-id');
 
+        const response = await fetch("{{ route('profiles.watchlaters.store', $profile) }}", {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+               film_id: filmId
+            })
+        })
     }
 </script>
 

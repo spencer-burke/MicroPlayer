@@ -10,6 +10,8 @@ class WatchLater extends Model
     use HasFactory;
 
     protected $fillable = [
+        'profile_id',
+        'film_id'
     ];
 
     public function profile()
