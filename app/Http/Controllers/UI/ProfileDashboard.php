@@ -38,14 +38,11 @@ class ProfileDashboard
             ->select('watch_laters.*', 'films.title as film_title')
             ->get();
 
-        $searchHistories = $profile->searchHistories;
-
         return view('profile-dashboard', [
             'profile' => $profile,
             'watchHistories' => $watchHistories,
             'favorites' => $favorites,
             'watchLaters' => $watchLaters,
-            'searchHistories' => $searchHistories,
         ]);
     }
 }

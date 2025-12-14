@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Resources;
 use App\Models\WatchLater;
 use App\Models\Profile;
 use Illuminate\Http\Request;
-use Illuminate\Auth;
 use Illuminate\Validation\Rule;
 
 class WatchLaterController

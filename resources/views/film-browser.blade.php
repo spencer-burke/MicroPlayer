@@ -56,7 +56,6 @@
 
     // function handler for add to watch later
     async function addToWatchLater(e) {
-        console.log('add to watchlater');
         if (!e.target.classList.contains('add-to-watch-later-btn')) {
             return
         }
