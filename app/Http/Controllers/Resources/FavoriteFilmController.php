@@ -38,7 +38,7 @@ class FavoriteFilmController
             ]
         ]);
 
-        $favorite = FavoriteFilm::create([
+        FavoriteFilm::create([
             'profile_id' => $profile->id,
             'film_id' => $validated['film_id']
         ]);

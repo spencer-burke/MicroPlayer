@@ -38,7 +38,7 @@ class WatchLaterController
             ]
         ]);
 
-        $watchLater = WatchLater::create([
+        WatchLater::create([
             'profile_id' => $profile->id,
             'film_id' => $validated['film_id']
         ]);
