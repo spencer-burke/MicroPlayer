@@ -6,7 +6,11 @@ MicroPlayer is a Laravel application that streams videos. It is a rewrite of  sc
 
 **Tech Stack:**
 - Laravel
-- Postgresql
+- Mariadb(locally)
 - Mux
-- Faktory?(planned)
-- Meilisearch?(planned)
+
+**Notes:**
+- The project is not technically done, but it's in a workable state
+- There is no css right now as I have to move on
+- Certain features were cut because of time contraints(can't keep working on it)
+- Better filterting could be used for the html chunks
