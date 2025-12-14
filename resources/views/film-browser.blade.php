@@ -20,7 +20,7 @@
             {{-- add to favorites button --}}
             <button type="button" class="add-to-favorites-btn" data-film-id="{{ $film->id }}">Add to Favorites</button>
             {{-- add to watch later button --}}
-            <button type="button" class="add-watch-later-btn" data-film-id="{{ $film->id }}">Add to Watch Later</button>
+            <button type="button" class="add-to-watch-later-btn" data-film-id="{{ $film->id }}">Add to Watch Later</button>
         @endforeach
     </div>
 </body>
